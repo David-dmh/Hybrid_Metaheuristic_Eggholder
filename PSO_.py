@@ -36,7 +36,7 @@ def rhos():
     return (rho1, rho2)
 
 
-def eggholder_obj_space(pso_xs=None, pso_ys=None, pso_zs=None):
+def eggholder_obj_space(pso_xs=[None], pso_ys=[None], pso_zs=[None]):
     """ Visualise eggholder function in 3D objective space.
     Args:
         pso_xs (float): final swarm x values.
@@ -57,15 +57,19 @@ def eggholder_obj_space(pso_xs=None, pso_ys=None, pso_zs=None):
     ax.set_zlabel("z")
 
     # add pso pts:
-    for i in zip(pso_xs, pso_ys, pso_zs):
-        ax.plot(i[0],
-                i[1],
-                i[2],
-                markerfacecolor="k",
-                markeredgecolor="k",
-                marker="o",
-                markersize=5,
-                alpha=.95)
+    try:
+        for i in zip(pso_xs, pso_ys, pso_zs):
+            ax.plot(i[0],
+                    i[1],
+                    i[2],
+                    markerfacecolor="k",
+                    markeredgecolor="k",
+                    marker="o",
+                    markersize=5,
+                    alpha=.95)
+
+    except ValueError:
+        pass
 
     # plot global optimum as reference point
     ax.plot(512,
